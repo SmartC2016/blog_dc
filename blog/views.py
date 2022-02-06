@@ -4,8 +4,6 @@ from django.views.generic.detail import SingleObjectMixin
 from .models import Post
 from .forms import CommentForm
 
-# from django.shortcuts import get_object_or_404
-
 
 class PostList(ListView):
     queryset = Post.objects.filter(status=1).order_by("-created_on")  # only published Posts, no drafts
