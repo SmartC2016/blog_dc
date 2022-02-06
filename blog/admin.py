@@ -2,6 +2,12 @@ from django.contrib import admin
 from .models import Post, Comment
 
 
+class CommentInline(admin.StackedInline):
+    # Inline shows the comment(s) when looking at the Post
+    model = Comment
+    extra = 0
+
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "status", "created_on")
     list_filter = ("status",)
@@ -10,6 +16,10 @@ class PostAdmin(admin.ModelAdmin):
         "content",
     ]
     prepopulated_fields = {"slug": ("title",)}
+    # The next line is to show the comment(s), when selecting a post
+    inlines = [
+        CommentInline,
+    ]
 
 
 class CommentAdmin(admin.ModelAdmin):
