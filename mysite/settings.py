@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # local apps
     "blog.apps.BlogConfig",
+    # third party
+    "django_summernote",  # wysiwig editor
 ]
 
 MIDDLEWARE = [
@@ -119,8 +121,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
+# new - location of staticfiles
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# NEW The next is important for django-summernote - as it allows media files to be uploaded
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# needed for summernote
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SUMMERNOTE_THEME = "bs4"  # use bootstrap 4 theme

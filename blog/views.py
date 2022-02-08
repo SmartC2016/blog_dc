@@ -4,11 +4,20 @@ from django.views.generic.detail import SingleObjectMixin
 from .models import Post
 from .forms import CommentForm
 
+# todo es dürfen nur die comment angezeigt werden, welche "aktiviert" wurden - geprüft
+# todo es dürfen nur die posts angezeigt werden, die gepublished sind
+# todo einbindung wysiwig editor django-summernote - https://djangocentral.com/integrating-summernote-in-django/
+# todo uploading images - https://djangocentral.com/building-a-blog-application-with-django/
+# todo pagination
+# todo sitemap
+# todo user login, logout
+
 
 class PostList(ListView):
     queryset = Post.objects.filter(status=1).order_by("-created_on")  # only published Posts, no drafts
     template_name = "index.html"
     context_object_name = "posts"
+    paginate_by = 2
 
 
 class PostDetail(View):
@@ -33,6 +42,7 @@ class PostDisplay(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["comments"] = self.object.comments.filter(active=True)
         context["form"] = CommentForm()
         return context
 

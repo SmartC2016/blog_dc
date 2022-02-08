@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Post, Comment
 
 
@@ -8,7 +9,9 @@ class CommentInline(admin.StackedInline):
     extra = 0
 
 
-class PostAdmin(admin.ModelAdmin):
+# class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ("content",)
     list_display = ("title", "slug", "status", "created_on")
     list_filter = ("status",)
     search_fields = [
