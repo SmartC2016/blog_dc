@@ -12,9 +12,7 @@
             </div>
         </div>
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
-        {% comment %}
-        {% for comment in post.comments.all %}
-        {% endcomment %}
+
         {% for comment in comments %}
         <div class="col-md-8 card mt-1 left top">
             <div style="padding: 10px;" id="comments">

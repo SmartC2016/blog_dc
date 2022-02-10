@@ -6,3 +6,7 @@ All credits go to the authors above.
 
 
 Christian Hetmann - 06.02.2022
+
+# Features
+Für nicht eingeloggte User, werden nur Posts angezeigt, die gepublished sind und Comments, die Active (moderiert) sind.
+# todo Für eingelogte staff User sollen alle Posts und alle Comments angezeigt werden
